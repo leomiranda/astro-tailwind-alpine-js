@@ -10,8 +10,7 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html
 	lang="en"
-	x-data="{ darkMode: localStorage.getItem('dark') === 'true' }"
-	x-init="$watch('darkMode', value => localStorage.setItem('dark', value))"
+	x-data="{ darkMode: $persist(true) }"
 	x-bind:class="{ 'dark': darkMode }"
 >
 	<head>
@@ -28,12 +27,11 @@ const { title } = Astro.props;
 </html>
 <script>
 	import Alpine from 'alpinejs';
+	import persist from '@alpinejs/persist';
 
-	// Optional: Extend Alpine.js
-	// Alpine.directive('foo', ...)
+	Alpine.plugin(persist);
 
-	(window as any).Alpine = Alpine;
-	(window as any).Alpine.start();
+	Alpine.start();
 </script>
 <style is:global>
 	:root {
