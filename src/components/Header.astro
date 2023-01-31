@@ -44,7 +44,7 @@
 			<div class="flex items-center">
 				<div class="hidden mr-3 -mb-1 sm:block">
 					<a
-						class="github-button"
+						class="dark:text-white"
 						href="/page"
 						data-color-scheme="no-preference: dark; light: light; dark: light;"
 						data-icon="octicon-star"
@@ -65,6 +65,7 @@
 					<svg
 						id="theme-toggle-dark-icon"
 						class="w-5 h-5"
+						x-show="!darkMode"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +75,8 @@
 					>
 					<svg
 						id="theme-toggle-light-icon"
-						class="hidden w-5 h-5"
+						class="w-5 h-5"
+						x-show="darkMode"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"
