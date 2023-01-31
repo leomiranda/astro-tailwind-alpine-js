@@ -8,7 +8,12 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html
+	lang="en"
+	x-data="{ darkMode: localStorage.getItem('dark') === 'true' }"
+	x-init="$watch('darkMode', value => localStorage.setItem('dark', value))"
+	x-bind:class="{ 'dark': darkMode }"
+>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -21,6 +26,15 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+<script>
+	import Alpine from 'alpinejs';
+
+	// Optional: Extend Alpine.js
+	// Alpine.directive('foo', ...)
+
+	(window as any).Alpine = Alpine;
+	(window as any).Alpine.start();
+</script>
 <style is:global>
 	:root {
 		--accent: 124, 58, 237;
