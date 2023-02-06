@@ -8,12 +8,7 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html
-	lang="en"
-	x-data="{ darkMode: $persist(true) }"
-	x-bind:class="{ 'dark': darkMode }"
-	x-cloak
->
+<html lang="en" x-data x-bind:class="{ 'dark': $store.local.darkMode }" x-cloak>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -36,10 +31,20 @@ const { title } = Astro.props;
 	</body>
 </html>
 <script>
-	import Alpine from 'alpinejs';
+	import AlpineJS from 'alpinejs';
 	import persist from '@alpinejs/persist';
 
-	Alpine.plugin(persist);
+	AlpineJS.plugin(persist);
+
+	window.Alpine = AlpineJS;
+	const { Alpine } = window;
+
+	Alpine.store('local', {
+		darkMode: Alpine.$persist(true),
+		toggleDarkMode() {
+			this.darkMode = !this.darkMode;
+		},
+	});
 
 	Alpine.start();
 </script>
