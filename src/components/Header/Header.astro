@@ -1,0 +1,27 @@
+---
+import Logo from './Logo';
+import MainMenu from './MainMenu';
+import MobileButton from './MobileButton';
+import MobileMenu from './MobileMenu';
+import ThemeButton from './ThemeButton';
+import UserMenu from './UserMenu/UserMenu.astro';
+---
+
+<header x-data="{ showMobileMenu: false }" @click.outside="showMobileMenu = false">
+	<nav
+		class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 py-3 px-4"
+	>
+		<div class="flex justify-between items-center max-w-screen-2xl mx-auto">
+			<div class="flex justify-start items-center">
+				<Logo />
+				<MainMenu />
+			</div>
+			<div class="flex justify-between items-center lg:order-2">
+				<ThemeButton />
+				<UserMenu />
+				<MobileButton />
+			</div>
+		</div>
+	</nav>
+	<MobileMenu />
+</header>
